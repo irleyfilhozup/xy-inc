@@ -1,23 +1,26 @@
 package xy.inc.logic;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import xy.inc.models.Point;
-import xy.inc.repository.Repository;
+import xy.inc.models.PointSearch;
 
 public class Distance {
 	
-	public static void check(int x, int y, int dMax) {
+	public static Collection<Point> check(PointSearch pointSearch, Collection<Point> pointsOfInterest) {
 		int pointX;
 		int pointY;
-		
-		Repository.nearPoints.clear();
-		
-		for(Point point : Repository.pointsOfInterest) {
-			pointX = (x-point.getCoordinatedX()) * (x-point.getCoordinatedX());
-			pointY = (y-point.getCoordinatedY()) * (y-point.getCoordinatedY());
-			if(sum(pointX,pointY)<=dMax) {
-				Repository.nearPoints.add(point);
+
+		Collection<Point> nearPoints = new ArrayList<Point>();
+		for(Point point : pointsOfInterest) {
+			pointX = (pointSearch.getCoordinatedX()-point.getCoordinatedX()) * (pointSearch.getCoordinatedX()-point.getCoordinatedX());
+			pointY =
+					(pointSearch.getCoordinatedY()-point.getCoordinatedY()) * (pointSearch.getCoordinatedY()-point.getCoordinatedY());
+			if(sum(pointX,pointY)<=pointSearch.getMaximumDistance()) {
+				nearPoints.add(point);
 			}
-		}		
+		}
+		return nearPoints;
 	}
 
 	private static int sum(int pointX, int pointY) {

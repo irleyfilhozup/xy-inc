@@ -1,8 +1,6 @@
 package xy.inc.api;
 
 import java.util.Collection;
-import java.util.Collections;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import xy.inc.logic.Distance;
 import xy.inc.models.Point;
-import xy.inc.repository.Repository;
+import xy.inc.models.PointSearch;
 import xy.inc.service.PointService;
 
 @RestController
@@ -72,20 +70,15 @@ public class PointController {
         return new ResponseEntity<Point>(newPoint, HttpStatus.CREATED);
     }
 
-
-    /*
     @RequestMapping(
-            value = "/mypoints",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
+            value = "/mypoints/search",
             method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<Point>> getPointsClosest (@RequestBody Point newPoint) {
+    public ResponseEntity<Collection<Point>> getPointsClosest (@RequestBody PointSearch pointSearch) {
 
-        Collection<Point> points = pointService.findAll();
+        Collection<Point> points = Distance.check(pointSearch, pointService.findAll());
 
         return new ResponseEntity<Collection<Point>>(points, HttpStatus.OK);
-    }*/
-
-
-
+    }
 }

@@ -2,10 +2,8 @@ package xy.inc.service;
 
 
 import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import xy.inc.models.Point;
 import xy.inc.repository.PointRepository;
 import xy.inc.util.Validations;

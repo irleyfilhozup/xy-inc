@@ -1,5 +1,6 @@
 xy/inc/repository/Repository.class
 xy/inc/logic/Distance.class
+xy/inc/models/PointSearch.class
 xy/inc/repository/PointRepository.class
 xy/inc/service/PointService.class
 xy/inc/api/PointController.class
