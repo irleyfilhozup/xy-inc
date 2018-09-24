@@ -1,5 +1,9 @@
 xy/inc/repository/Repository.class
 xy/inc/logic/Distance.class
+xy/inc/repository/PointRepository.class
+xy/inc/service/PointService.class
 xy/inc/api/PointController.class
-xy/inc/models/Point.class
 xy/inc/Application.class
+xy/inc/models/Point.class
+xy/inc/util/Validations.class
+xy/inc/service/PointServiceBean.class

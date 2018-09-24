@@ -1,7 +1,16 @@
 package xy.inc.models;
 
-public class Point implements Comparable<Point> {
-	
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
+@Entity
+public class Point {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
 	private String name;
 	private Integer coordinatedX;
 	private Integer coordinatedY;
@@ -13,6 +22,14 @@ public class Point implements Comparable<Point> {
 	}
 	
 	public Point() {		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -44,10 +61,5 @@ public class Point implements Comparable<Point> {
         return "'"+this.name+
         		"' (x="+this.coordinatedX+
         		", y="+this.coordinatedY+")";
-	}
-
-	@Override
-	public int compareTo(Point point2) {
-		return  this.name.compareTo(point2.getName());
 	}
 }

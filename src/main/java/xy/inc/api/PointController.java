@@ -3,6 +3,7 @@ package xy.inc.api;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import xy.inc.models.Point;
 import xy.inc.repository.Repository;
+import xy.inc.service.PointService;
 
 @RestController
 public class PointController {
+
+    @Autowired
+    PointService pointService;
 
     @RequestMapping(
             value = "/mypoints",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<Point>> getGreetings() {
+    public ResponseEntity<Collection<Point>> getPoints() {
 
-        initList();
+        Collection<Point> points = pointService.findAll();
 
-        Collection<Point> points = Repository.pointsOfInterest;
         return new ResponseEntity<Collection<Point>>(points, HttpStatus.OK);
     }
 
@@ -36,7 +40,7 @@ public class PointController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Point> deletePoint(@PathVariable("id") Integer id, @RequestBody Point point) {
 
-        Repository.pointsOfInterest.add(point);
+        pointService.delete(id);
         return new ResponseEntity<Point>(HttpStatus.NO_CONTENT);
     }
 
@@ -47,7 +51,10 @@ public class PointController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Point> updatePoints(@RequestBody Point upDatePoint) {
 
-        Point point = Repository.pointsOfInterest.get(3);///LOGICA UPDATE
+        if (upDatePoint.getId()<0){
+            return null;
+        }
+        Point point = pointService.update(upDatePoint);
         if(point == null) {
             return  new ResponseEntity<Point>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -61,20 +68,24 @@ public class PointController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Point> createPoint(@RequestBody Point newPoint) {
 
-        Repository.pointsOfInterest.add(newPoint);
+        pointService.create(newPoint);
         return new ResponseEntity<Point>(newPoint, HttpStatus.CREATED);
     }
 
-    private static void initList(){
-        if(Repository.pointsOfInterest.size()==0){
-            Repository.loadList();
-            Collections.sort(Repository.pointsOfInterest);
-        }
-    }
 
-    private static void update(Point point){
-        if(Repository.pointsOfInterest.equals(point)){
-            Repository.pointsOfInterest.add(point);
-        }
-    }
+    /*
+    @RequestMapping(
+            value = "/mypoints",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<Point>> getPointsClosest (@RequestBody Point newPoint) {
+
+        Collection<Point> points = pointService.findAll();
+
+        return new ResponseEntity<Collection<Point>>(points, HttpStatus.OK);
+    }*/
+
+
+
 }
