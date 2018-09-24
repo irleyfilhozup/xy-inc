@@ -1,8 +1,8 @@
-/home/zup/workspace/xy-inc/src/main/java/xy/inc/api/PointController.java
-/home/zup/workspace/xy-inc/src/main/java/xy/inc/Application.java
-/home/zup/workspace/xy-inc/src/main/java/xy/inc/models/Point.java
-/home/zup/workspace/xy-inc/src/main/java/xy/inc/repository/PointRepository.java
-/home/zup/workspace/xy-inc/src/main/java/xy/inc/logic/Distance.java
-/home/zup/workspace/xy-inc/src/main/java/xy/inc/service/PointService.java
-/home/zup/workspace/xy-inc/src/main/java/xy/inc/repository/Repository.java
-/home/zup/workspace/xy-inc/src/main/java/xy/inc/service/PointServiceBean.java
+/home/zup/workspace/xy-inc5/src/main/java/com/study/xyinc5/repository/Repository.java
+/home/zup/workspace/xy-inc5/src/main/java/com/study/xyinc5/service/PointServiceBean.java
+/home/zup/workspace/xy-inc5/src/main/java/com/study/xyinc5/XyInc5Application.java
+/home/zup/workspace/xy-inc5/src/main/java/com/study/xyinc5/service/PointService.java
+/home/zup/workspace/xy-inc5/src/main/java/com/study/xyinc5/api/PointController.java
+/home/zup/workspace/xy-inc5/src/main/java/com/study/xyinc5/repository/PointRepository.java
+/home/zup/workspace/xy-inc5/src/main/java/com/study/xyinc5/models/Point.java
+/home/zup/workspace/xy-inc5/src/main/java/com/study/xyinc5/logic/Distance.java

@@ -26,7 +26,7 @@ public class Validations {
 
     private static boolean fieldsCompleted(Point point){
 
-        if(point==null){
+        if(point.getName()==null){
             return false;
         }
         else {

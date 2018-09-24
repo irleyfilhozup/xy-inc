@@ -12,7 +12,8 @@ public interface PointService {
 
     Point create(Point point);
 
-    Point update(Point point);
+    Point update(Point point, Integer id);
 
     void delete(int id);
+
 }

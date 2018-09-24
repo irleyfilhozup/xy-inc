@@ -47,16 +47,13 @@ public class PointController {
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Point> updatePoints(@RequestBody Point upDatePoint) {
+    public ResponseEntity<Point> updatePoints(@RequestBody Point upDatePoint, @PathVariable("id") Integer id) {
 
-        if (upDatePoint.getId()<0){
-            return null;
-        }
-        Point point = pointService.update(upDatePoint);
+        Point point = pointService.update(upDatePoint,id);
         if(point == null) {
             return  new ResponseEntity<Point>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<Point>(point, HttpStatus.CREATED);
+        return new ResponseEntity<Point>(point, HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(
